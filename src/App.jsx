@@ -2,7 +2,7 @@
  * @Author: yaojinxi 864554492@qq.com
  * @Date: 2025-04-07 22:08:24
  * @LastEditors: yaojinxi 864554492@qq.com
- * @LastEditTime: 2025-04-09 22:15:56
+ * @LastEditTime: 2025-04-10 21:36:49
  * @FilePath: \trading\src\App.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -64,6 +64,11 @@ function App() {
         fetchData();
     }, [ticker, range, selectedMAs, strategy]);
 
+    useEffect(() => {
+        const recommended = maRecommendations[range] || [];
+        setSelectedMAs(prev => prev.filter(ma => recommended.includes(ma)));
+      }, [range]);
+
     return (
         <div style={{ padding: '20px' }}>
             <h2>📈 股票价格可视化</h2>
@@ -82,15 +87,22 @@ function App() {
 
             <hr />
 
-            <h4>✅ 控制台中打印了返回的股票数据和策略信号</h4>
-            <p>
-                你当前选择的是：<strong>{ticker}</strong>，区间：
-                <strong>{range}</strong>
-            </p>
-            <p>
-                策略：<strong>{strategy}</strong>，均线：
-                <strong>{selectedMAs.join(', ')}</strong>
-            </p>
+            {signals.length > 0 && (
+                <div style={{ marginTop: '24px' }}>
+                    <h4>策略信号列表（{signals.length} 个）</h4>
+                    <ul>
+                        {signals.map((s, i) => (
+                            <li key={i}>
+                                <span>{s.date}</span> -{' '}
+                                <strong>
+                                    {s.type === 'buy' ? '🟢 买入' : '🔴 卖出'}
+                                </strong>{' '}
+                                @ {s.price}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
