@@ -1,110 +1,141 @@
-/*
- * @Author: yaojinxi 864554492@qq.com
- * @Date: 2025-04-07 22:08:24
- * @LastEditors: yaojinxi 864554492@qq.com
- * @LastEditTime: 2025-04-10 21:36:49
- * @FilePath: \trading\src\App.jsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 import React, { useState, useEffect } from 'react';
 import StockSelector from './components/StockSelector';
 import ChartControls from './components/ChartControls';
 import SignalChart from './components/SignalChart';
-import { maRecommendations } from './config/constants';
 
 import {
-    DEFAULT_TICKER,
-    DEFAULT_RANGE,
-    DEFAULT_STRATEGY,
-    DEFAULT_MAS
+  DEFAULT_RANGE,
+  DEFAULT_STRATEGY
 } from './config/defaults';
 
+import { maRecommendations } from './config/constants';
 import { getStockData } from './api/stock';
 import { getStrategySignals } from './api/strategy';
+import { getSymbolList } from './api/symbols';
 
 function App() {
-    const [ticker, setTicker] = useState(DEFAULT_TICKER);
-    const [strategy, setStrategy] = useState(DEFAULT_STRATEGY);
-    const [range, setRange] = useState(DEFAULT_RANGE);
+  const [ticker, setTicker] = useState(null); // ❗ 初始为空，等 symbols 加载后再设
+  const [symbolList, setSymbolList] = useState([]);
+  const [range, setRange] = useState(DEFAULT_RANGE);
+  const [strategy, setStrategy] = useState(DEFAULT_STRATEGY);
+  const [selectedMAs, setSelectedMAs] = useState(maRecommendations[DEFAULT_RANGE] || []);
+  const [chartData, setChartData] = useState([]);
+  const [signals, setSignals] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [strategyRequested, setStrategyRequested] = useState(false);
 
-    const [selectedMAs, setSelectedMAs] = useState(
-        maRecommendations[DEFAULT_RANGE]
-    );
-    const [chartData, setChartData] = useState([]);
-    const [signals, setSignals] = useState([]);
+  // 1️⃣ 页面加载后获取 symbols 列表，并设置默认 ticker
+  useEffect(() => {
+    const loadSymbols = async () => {
+      try {
+        const list = await getSymbolList();
+        setSymbolList(list);
+        if (list.length > 0) {
+          setTicker(list[0].value); // ✅ 设置默认 ticker
+        }
+      } catch (err) {
+        console.error('获取 symbols 失败:', err);
+      }
+    };
+    loadSymbols();
+  }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                console.log('📤 请求参数: ', {
-                    ticker,
-                    range,
-                    selectedMAs,
-                    strategy
-                });
+  // 2️⃣ 区间改变时，根据推荐列表清洗 selectedMAs
+  useEffect(() => {
+    const recommended = maRecommendations[range] || [];
+    setSelectedMAs(prev => prev.filter(ma => recommended.includes(ma)));
+  }, [range]);
 
-                const [priceData, strategyData] = await Promise.all([
-                    getStockData(ticker, range, selectedMAs),
-                    getStrategySignals(ticker, range, strategy, {
-                        short_ma: 50,
-                        long_ma: 200
-                    })
-                ]);
+  // 3️⃣ ticker 有效后才请求股票数据
+  useEffect(() => {
+    if (!ticker) return;
 
-                console.log('✅ 股票数据: ', priceData);
-                console.log('✅ 策略信号: ', strategyData);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const data = await getStockData(ticker, range, selectedMAs);
+        setChartData(data);
+        setSignals([]);
+        setStrategyRequested(false);
+      } catch (err) {
+        console.error('获取股票数据失败:', err);
+        setChartData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-                setChartData(priceData);
-                setSignals(strategyData);
-            } catch (error) {
-                console.error('❌ 数据请求失败:', error);
-            }
-        };
+    fetchData();
+  }, [ticker, range, selectedMAs]);
 
-        fetchData();
-    }, [ticker, range, selectedMAs, strategy]);
+  // 4️⃣ 策略点击后触发
+  const handleRunStrategy = async () => {
+    try {
+      const result = await getStrategySignals(ticker, range, strategy, {
+        short_ma: 50,
+        long_ma: 200
+      });
+      setSignals(result);
+      setStrategyRequested(true);
+    } catch (err) {
+      console.error('策略请求失败:', err);
+      setSignals([]);
+    }
+  };
 
-    useEffect(() => {
-        const recommended = maRecommendations[range] || [];
-        setSelectedMAs(prev => prev.filter(ma => recommended.includes(ma)));
-      }, [range]);
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+      <h2>📈 股票价格可视化</h2>
 
-    return (
-        <div style={{ padding: '20px' }}>
-            <h2>📈 股票价格可视化</h2>
+      <StockSelector
+        ticker={ticker}
+        onChange={setTicker}
+        options={symbolList}
+      />
 
-            <StockSelector ticker={ticker} onChange={setTicker} />
+      <ChartControls
+        range={range}
+        onRangeChange={setRange}
+        selectedMAs={selectedMAs}
+        setSelectedMAs={setSelectedMAs}
+        strategy={strategy}
+        onStrategyChange={setStrategy}
+      />
 
-            <ChartControls
-                range={range}
-                onRangeChange={setRange}
-                selectedMAs={selectedMAs}
-                setSelectedMAs={setSelectedMAs}
-                strategy={strategy}
-                onStrategyChange={setStrategy}
-            />
-            <SignalChart data={chartData} signals={signals} mas={selectedMAs} />
+      <button
+        onClick={handleRunStrategy}
+        style={{ margin: '12px 0' }}
+        disabled={!ticker || loading}
+      >
+        ▶️ 运行策略分析
+      </button>
 
-            <hr />
+      <SignalChart
+        data={chartData}
+        signals={signals}
+        mas={selectedMAs}
+      />
 
-            {signals.length > 0 && (
-                <div style={{ marginTop: '24px' }}>
-                    <h4>策略信号列表（{signals.length} 个）</h4>
-                    <ul>
-                        {signals.map((s, i) => (
-                            <li key={i}>
-                                <span>{s.date}</span> -{' '}
-                                <strong>
-                                    {s.type === 'buy' ? '🟢 买入' : '🔴 卖出'}
-                                </strong>{' '}
-                                @ {s.price}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-        </div>
-    );
+      <hr style={{ margin: '24px 0' }} />
+
+      <div>
+        <p>你当前选择的是：<strong>{ticker}</strong>，区间：<strong>{range}</strong></p>
+        <p>策略：<strong>{strategy}</strong>，均线：<strong>{selectedMAs.join(', ')}</strong></p>
+        {strategyRequested && signals.length > 0 && (
+          <>
+            <h4>📌 策略信号结果：</h4>
+            <ul>
+              {signals.map((s, i) => (
+                <li key={i}>
+                  {s.date} - {s.type === 'buy' ? '🟢 买入' : '🔴 卖出'} @ {s.price}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default App;
