@@ -12,6 +12,7 @@ import { maRecommendations } from './config/constants';
 import { getStockData } from './api/stock';
 import { getStrategySignals } from './api/strategy';
 import { getSymbolList } from './api/symbols';
+import { getBackTest } from './api/backtest';
 
 function App() {
   const [ticker, setTicker] = useState(null); // ❗ 初始为空，等 symbols 加载后再设
@@ -83,6 +84,20 @@ function App() {
     }
   };
 
+  const handleRunBackTest = async() =>{
+    try{
+      const result = await getBackTest(ticker, range, strategy, {
+        short_ma: 50,
+        long_ma: 200
+      },10000,0.01)
+      console.log(result);
+      
+    }catch (err) {
+      console.error('回测请求失败:', err);
+      setSignals([]);
+    }
+  }
+
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h2>📈 股票价格可视化</h2>
@@ -108,6 +123,13 @@ function App() {
         disabled={!ticker || loading}
       >
         ▶️ 运行策略分析
+      </button>
+      <button
+        onClick={handleRunBackTest}
+        style={{ margin: '12px 0' }}
+        disabled={!ticker || loading}
+      >
+        ▶️ 测试回测
       </button>
 
       <SignalChart
