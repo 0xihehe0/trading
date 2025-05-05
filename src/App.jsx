@@ -42,10 +42,16 @@ function App() {
   }, []);
 
   // 2️⃣ 区间改变时，根据推荐列表清洗 selectedMAs
-  useEffect(() => {
-    const recommended = maRecommendations[range] || [];
-    setSelectedMAs(prev => prev.filter(ma => recommended.includes(ma)));
-  }, [range]);
+  // useEffect(() => {
+  //   const recommended = maRecommendations[range] || [];
+  //   setSelectedMAs(prev => prev.filter(ma => recommended.includes(ma)));
+  // }, [range]);
+
+  const handleRangeChange = (newRange) => {
+    setRange(newRange);
+    setSelectedMAs(maRecommendations[newRange] || []);
+  };
+
 
   // 3️⃣ ticker 有效后才请求股票数据
   useEffect(() => {
@@ -110,7 +116,7 @@ function App() {
 
       <ChartControls
         range={range}
-        onRangeChange={setRange}
+        onRangeChange={handleRangeChange}
         selectedMAs={selectedMAs}
         setSelectedMAs={setSelectedMAs}
         strategy={strategy}
