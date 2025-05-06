@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StockSelector from './components/StockSelector';
 import ChartControls from './components/ChartControls';
 import SignalChart from './components/SignalChart';
+import BackTestChart from './components/BackTestChart';
 
 import {
   DEFAULT_RANGE,
@@ -21,6 +22,7 @@ function App() {
   const [strategy, setStrategy] = useState(DEFAULT_STRATEGY);
   const [selectedMAs, setSelectedMAs] = useState(maRecommendations[DEFAULT_RANGE] || []);
   const [chartData, setChartData] = useState([]);
+  const [backTestData, setBackTestData] = useState([]);
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(false);
   const [strategyRequested, setStrategyRequested] = useState(false);
@@ -40,12 +42,6 @@ function App() {
     };
     loadSymbols();
   }, []);
-
-  // 2️⃣ 区间改变时，根据推荐列表清洗 selectedMAs
-  // useEffect(() => {
-  //   const recommended = maRecommendations[range] || [];
-  //   setSelectedMAs(prev => prev.filter(ma => recommended.includes(ma)));
-  // }, [range]);
 
   const handleRangeChange = (newRange) => {
     setRange(newRange);
@@ -96,7 +92,7 @@ function App() {
         short_ma: 50,
         long_ma: 200
       },10000,0.01)
-      console.log(result);
+      setBackTestData(result);
       
     }catch (err) {
       console.error('回测请求失败:', err);
@@ -145,7 +141,7 @@ function App() {
       />
 
       <hr style={{ margin: '24px 0' }} />
-
+      <BackTestChart data={backTestData}/>
       <div>
         <p>你当前选择的是：<strong>{ticker}</strong>，区间：<strong>{range}</strong></p>
         <p>策略：<strong>{strategy}</strong>，均线：<strong>{selectedMAs.join(', ')}</strong></p>

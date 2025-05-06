@@ -1,0 +1,1776 @@
+{
+    "backtest": {
+        "equity_curve": [
+            {
+                "cash": 10000,
+                "date": "2024-02-22",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-02-23",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-02-26",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-02-27",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-02-28",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-02-29",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-01",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-04",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-05",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-06",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-07",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-08",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-11",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-12",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-13",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-14",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-15",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-18",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-19",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-20",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-21",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-22",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-25",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-26",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-27",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-03-28",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-04-01",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-04-02",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 10000,
+                "date": "2024-04-03",
+                "portfolio_value": 10000,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-04",
+                "portfolio_value": 9901.74,
+                "position_value": 9825.72
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-04-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-01",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-05-31",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-06-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-01",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-07-31",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-01",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-08-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-09-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-01",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-10-31",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-01",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-11-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2024-12-31",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-15",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-16",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-22",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-23",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-29",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-30",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-01-31",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-02-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-05",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-06",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-12",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-13",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-14",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-17",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-18",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-19",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-20",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-21",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-24",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-25",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-26",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-27",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-28",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-03-31",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-01",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-02",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-03",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-04",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-07",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-08",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-09",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-10",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            },
+            {
+                "cash": 76.02,
+                "date": "2025-04-11",
+                "portfolio_value": 76.02,
+                "position_value": 0
+            }
+        ],
+        "metrics": {
+            "annual_return": 40.85,
+            "days": 414,
+            "loss_count": 0,
+            "max_drawdown": -99.24,
+            "sharpe_ratio": 0.42,
+            "total_return": 47.47,
+            "trade_count": 1,
+            "win_count": 0,
+            "win_rate": 0
+        },
+        "summary": {
+            "final_capital": 14747.44,
+            "initial_capital": 10000,
+            "period": "2023-05-08 - 2025-04-11",
+            "profit": 4747.44,
+            "strategy_params": {
+                "commission": 0.01,
+                "long_ma": 200,
+                "short_ma": 50
+            },
+            "symbol": "Mon, 08 May 2023 00:00:00 GMT"
+        },
+        "trades": [
+            {
+                "capital": 76.02,
+                "cost": 9923.98,
+                "date": "2024-04-04",
+                "portfolio": 9901.74,
+                "price": 88.52,
+                "shares": 111,
+                "type": "buy"
+            }
+        ]
+    },
+    "mode": "both",
+    "params": {
+        "long_ma": 200,
+        "short_ma": 50
+    },
+    "range": "2y",
+    "signals": [
+        {
+            "date": "2024-03-22",
+            "price": 87.29,
+            "type": "sell"
+        },
+        {
+            "date": "2024-04-04",
+            "price": 88.52,
+            "type": "buy"
+        }
+    ],
+    "strategy": "ma_cross",
+    "symbol": "MMM"
+}
