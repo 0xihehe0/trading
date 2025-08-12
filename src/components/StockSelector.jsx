@@ -1,4 +1,11 @@
-import React from 'react';
+/*
+ * @Author: yaojinxi 864554492@qq.com
+ * @Date: 2025-04-09 20:20:50
+ * @LastEditors: yaojinxi 864554492@qq.com
+ * @LastEditTime: 2025-08-12 23:37:50
+ * @FilePath: \trading\src\components\StockSelector.jsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import Select from 'react-select';
 
 function StockSelector({ ticker, onChange, options = [] }) {

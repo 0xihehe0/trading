@@ -32,9 +32,13 @@ function App() {
     const loadSymbols = async () => {
       try {
         const list = await getSymbolList();
+        console.log(list);
+        
         setSymbolList(list);
         if (list.length > 0) {
           setTicker(list[0].value); // ✅ 设置默认 ticker
+          console.log(list);
+          
         }
       } catch (err) {
         console.error('获取 symbols 失败:', err);
