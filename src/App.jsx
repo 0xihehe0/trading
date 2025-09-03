@@ -22,6 +22,7 @@ function App() {
   const [strategy, setStrategy] = useState(DEFAULT_STRATEGY);
   const [selectedMAs, setSelectedMAs] = useState(maRecommendations[DEFAULT_RANGE] || []);
   const [chartData, setChartData] = useState([]);
+  const [meta, setMeta] = useState([]);             // ✅ 新增：保存后端 meta
   const [backTestData, setBackTestData] = useState([]);
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -61,7 +62,8 @@ function App() {
       try {
         setLoading(true);
         const data = await getStockData(ticker, range, selectedMAs);
-        setChartData(data);
+        setChartData(data.data);
+        setMeta(data.meta);   
         setSignals([]);
         setStrategyRequested(false);
       } catch (err) {
@@ -116,6 +118,7 @@ function App() {
 
       <ChartControls
         range={range}
+        onUpdate={meta}
         onRangeChange={handleRangeChange}
         selectedMAs={selectedMAs}
         setSelectedMAs={setSelectedMAs}
