@@ -2,7 +2,7 @@
  * @Author: yaojinxi 864554492@qq.com
  * @Date: 2025-04-09 21:04:57
  * @LastEditors: yaojinxi 864554492@qq.com
- * @LastEditTime: 2025-04-09 21:05:03
+ * @LastEditTime: 2026-04-23 10:07:45
  * @FilePath: \trading\src\config\constants.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,7 +12,10 @@ export const ranges = [
     { label: '1M', value: '1mo' },
     { label: '6M', value: '6mo' },
     { label: '1Y', value: '1y' },
-    { label: '2Y', value: '2y' }
+    { label: '2Y', value: '2y' },
+    { label: '5Y', value: '5y' },
+    { label: '10Y', value: '10y' },
+    { label: 'ALL', value: 'all' }
   ];
   
   export const maRecommendations = {
@@ -21,7 +24,10 @@ export const ranges = [
     "1mo": [5, 10, 20],
     "6mo": [20, 50],
     "1y": [50, 100],
-    "2y": [50, 100, 200]
+    "2y": [50, 100, 200],
+    "5y": [50, 100, 200],
+    "10y": [100, 200],
+    "all": [100, 200]
   };
   
   export const allMAOptions = [
