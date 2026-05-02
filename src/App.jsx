@@ -13,26 +13,23 @@ import { getSymbolList } from './api/symbols';
 import { getBackTest } from './api/backtest';
 import { getStockMetrics } from './api/metrics';
 
+import styles from './App.module.css';
+
 function App() {
     const [ticker, setTicker] = useState(null);
     const [symbolList, setSymbolList] = useState([]);
     const [range, setRange] = useState(DEFAULT_RANGE);
     const [strategy, setStrategy] = useState(DEFAULT_STRATEGY);
-    const [selectedMAs, setSelectedMAs] = useState(
-        maRecommendations[DEFAULT_RANGE] || []
-    );
+    const [selectedMAs, setSelectedMAs] = useState(maRecommendations[DEFAULT_RANGE] || []);
     const [chartData, setChartData] = useState([]);
     const [backTestData, setBackTestData] = useState([]);
     const [signals, setSignals] = useState([]);
     const [loading, setLoading] = useState(false);
     const [strategyRequested, setStrategyRequested] = useState(false);
     const [meta, setMeta] = useState(null);
-
-    // 指标相关状态
     const [metrics, setMetrics] = useState(null);
     const [metricsLoading, setMetricsLoading] = useState(false);
 
-    // 1) 载入 symbols
     useEffect(() => {
         (async () => {
             try {
@@ -50,20 +47,16 @@ function App() {
         setSelectedMAs(maRecommendations[newRange] || []);
     };
 
-    // 2) 载入行情 + 指标（ticker 或 range 变化时同时请求）
     useEffect(() => {
         if (!ticker) return;
         (async () => {
             try {
                 setLoading(true);
                 setMetricsLoading(true);
-
-                // 并行请求行情和指标
                 const [stockResp, metricsResp] = await Promise.all([
                     getStockData(ticker, range, selectedMAs),
                     getStockMetrics(ticker, range),
                 ]);
-
                 setChartData(stockResp.data);
                 setMeta(stockResp.meta);
                 setMetrics(metricsResp.metrics);
@@ -81,14 +74,11 @@ function App() {
         })();
     }, [ticker, range, selectedMAs]);
 
-    // 3) 手动更新
     const handleRunUpdate = async () => {
         if (!ticker) return;
         try {
             setLoading(true);
-
             const updated = await postNewdata(ticker, meta?.last_local);
-
             if (updated?.data && updated?.meta) {
                 setChartData(updated.data);
                 setMeta(updated.meta);
@@ -97,15 +87,12 @@ function App() {
                 setChartData(resp.data);
                 setMeta(resp.meta);
             }
-
-            // 更新数据后重新拉指标
             try {
                 const metricsResp = await getStockMetrics(ticker, range);
                 setMetrics(metricsResp.metrics);
             } catch (e) {
                 console.error('更新指标失败:', e);
             }
-
             setSignals([]);
             setStrategyRequested(false);
         } catch (err) {
@@ -115,18 +102,15 @@ function App() {
         }
     };
 
-    // 4) 策略/回测
     const handleRunStrategy = async () => {
         if (selectedMAs.length < 2) {
             alert('请至少选择两条均线用于策略分析');
             return;
         }
-        const shortMA = Math.min(...selectedMAs);
-        const longMA = Math.max(...selectedMAs);
         try {
             const result = await getStrategySignals(ticker, range, strategy, {
-                short_ma: shortMA,
-                long_ma: longMA
+                short_ma: Math.min(...selectedMAs),
+                long_ma: Math.max(...selectedMAs),
             });
             setSignals(result);
             setStrategyRequested(true);
@@ -141,16 +125,11 @@ function App() {
             alert('请至少选择两条均线用于回测');
             return;
         }
-        const shortMA = Math.min(...selectedMAs);
-        const longMA = Math.max(...selectedMAs);
         try {
             const result = await getBackTest(
-                ticker,
-                range,
-                strategy,
-                { short_ma: shortMA, long_ma: longMA },
-                10000,
-                0.01
+                ticker, range, strategy,
+                { short_ma: Math.min(...selectedMAs), long_ma: Math.max(...selectedMAs) },
+                10000, 0.01
             );
             setBackTestData(result);
         } catch (err) {
@@ -160,68 +139,68 @@ function App() {
     };
 
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-            <h2>📈 股票价格可视化</h2>
+        <div className={styles.app}>
+            <div className={styles.header}>
+                <h1 className={styles.headerTitle}>TERMINAL</h1>
+                <span className={styles.headerSub}>S&P 500 Analytics Platform</span>
+            </div>
 
-            <StockSelector
-                ticker={ticker}
-                onChange={setTicker}
-                options={symbolList}
-            />
+            <div className={styles.body}>
+                <div className={styles.controlBar}>
+                    <StockSelector ticker={ticker} onChange={setTicker} options={symbolList} />
+                    <ChartControls
+                        range={range} onRangeChange={handleRangeChange}
+                        selectedMAs={selectedMAs} setSelectedMAs={setSelectedMAs}
+                        strategy={strategy} onStrategyChange={setStrategy}
+                        canUpdate={!!meta?.need_update} isLatest={!!meta?.is_latest}
+                        lastLocal={meta?.last_local} loading={loading}
+                        onUpdate={handleRunUpdate}
+                    />
+                </div>
 
-            <ChartControls
-                range={range}
-                onRangeChange={handleRangeChange}
-                selectedMAs={selectedMAs}
-                setSelectedMAs={setSelectedMAs}
-                strategy={strategy}
-                onStrategyChange={setStrategy}
-                canUpdate={!!meta && !!meta.need_update}
-                isLatest={!!meta && !!meta.is_latest}
-                lastLocal={meta?.last_local}
-                loading={loading}
-                onUpdate={handleRunUpdate}
-            />
+                <div className={styles.actionBar}>
+                    <button
+                        className={`${styles.actionBtn} ${styles.actionBtnStrategy}`}
+                        onClick={handleRunStrategy}
+                        disabled={!ticker || loading}
+                    >
+                        ▶ 运行策略分析
+                    </button>
+                    <button
+                        className={`${styles.actionBtn} ${styles.actionBtnBacktest}`}
+                        onClick={handleRunBackTest}
+                        disabled={!ticker || loading}
+                    >
+                        ▶ 测试回测
+                    </button>
+                </div>
 
-            <button
-                onClick={handleRunStrategy}
-                style={{ margin: '12px 0' }}
-                disabled={!ticker || loading}
-            >
-                ▶️ 运行策略分析
-            </button>
-            <button
-                onClick={handleRunBackTest}
-                style={{ margin: '12px 0' }}
-                disabled={!ticker || loading}
-            >
-                ▶️ 测试回测
-            </button>
+                <div className={styles.chartSection}>
+                    <SignalChart data={chartData} signals={signals} mas={selectedMAs} />
+                </div>
 
-            <SignalChart data={chartData} signals={signals} mas={selectedMAs} />
+                <MetricsPanel metrics={metrics} loading={metricsLoading} ticker={ticker} range={range} />
+                <BackTestChart data={backTestData} />
 
-            <MetricsPanel
-                metrics={metrics}
-                loading={metricsLoading}
-                ticker={ticker}
-                range={range}
-            />
-
-            <hr style={{ margin: '24px 0' }} />
-            <BackTestChart data={backTestData} />
-
-            <div>
-                <p>
-                    你当前选择的是：<strong>{ticker}</strong>，区间：
-                    <strong>{range}</strong>
-                </p>
-                <p>
-                    策略：<strong>{strategy}</strong>，均线：
-                    <strong>{selectedMAs.join(', ')}</strong>
-                </p>
-                {meta?.note && (
-                    <p style={{ color: '#888' }}>提示：{meta.note}</p>
-                )}
+                <div className={styles.statusBar}>
+                    <span className={styles.statusItem}>
+                        <span className={styles.statusLabel}>TICKER</span>
+                        <span className={styles.statusValue}>{ticker || '--'}</span>
+                    </span>
+                    <span className={styles.statusItem}>
+                        <span className={styles.statusLabel}>RANGE</span>
+                        <span className={styles.statusValue}>{range.toUpperCase()}</span>
+                    </span>
+                    <span className={styles.statusItem}>
+                        <span className={styles.statusLabel}>MA</span>
+                        <span className={styles.statusValue}>{selectedMAs.join(' / ') || '--'}</span>
+                    </span>
+                    <span className={styles.statusItem}>
+                        <span className={styles.statusLabel}>STRATEGY</span>
+                        <span className={styles.statusValue}>{strategy}</span>
+                    </span>
+                    {meta?.note && <span className={styles.statusNote}>{meta.note}</span>}
+                </div>
             </div>
         </div>
     );

@@ -1,0 +1,91 @@
+/* src/config/theme.css */
+/* 全局主题变量 — 深色终端风 */
+/* 所有 .module.css 通过 var(--xxx) 引用，改主题只改这一个文件 */
+
+:root {
+  /* 底色层级（由深到浅） */
+  --bg-primary: #0a0e17;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2234;
+  --bg-input: #0d1321;
+  --bg-border: #1e2a3a;
+  --bg-border-light: #2a3a4e;
+
+  /* 文字 */
+  --text-primary: #e0e6ed;
+  --text-secondary: #7a8ba3;
+  --text-muted: #4a5568;
+  --text-heading: #f1f5f9;
+
+  /* 功能色 */
+  --color-green: #00e676;
+  --color-red: #ff3d57;
+  --color-amber: #ffb300;
+  --color-blue: #448aff;
+  --color-cyan: #00e5ff;
+  --color-purple: #b388ff;
+  --color-orange: #ff9100;
+  --color-teal: #1de9b6;
+  --color-coral: #ff6e40;
+  --color-gold: #ffd740;
+  --color-violet: #7c4dff;
+
+  /* 字体 */
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-lg: 15px;
+  --font-size-xl: 18px;
+  --font-size-xxl: 22px;
+
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+
+  /* 圆角 */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+/* 全局基础样式 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

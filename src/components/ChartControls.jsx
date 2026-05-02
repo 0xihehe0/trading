@@ -1,18 +1,20 @@
+/*
+ * @Author: yaojinxi 864554492@qq.com
+ * @Date: 2025-04-09 20:51:02
+ * @LastEditors: yaojinxi 864554492@qq.com
+ * @LastEditTime: 2026-05-02 23:59:06
+ * @FilePath: \trading\src\components\ChartControls.jsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { ranges, strategies, allMAOptions } from '../config/constants';
+import styles from './style/ChartControls.module.css';
 
 function ChartControls({
-    range,
-    onRangeChange,
-    selectedMAs,
-    setSelectedMAs,
-    strategy,
-    onStrategyChange,
-    // 新增/沿用的 props
-    canUpdate = false,
-    isLatest = false,
-    lastLocal,
-    loading = false,
-    onUpdate
+    range, onRangeChange,
+    selectedMAs, setSelectedMAs,
+    strategy, onStrategyChange,
+    canUpdate = false, isLatest = false,
+    lastLocal, loading = false, onUpdate,
 }) {
     const toggleMA = maValue => {
         const updated = selectedMAs.includes(maValue)
@@ -21,97 +23,71 @@ function ChartControls({
         setSelectedMAs(updated);
     };
 
+    const syncEnabled = canUpdate && !loading;
+
     return (
-        <div style={{ marginBottom: 16 }}>
-            {/* 区间选择 */}
-            <div style={{ marginBottom: 8 }}>
-                <strong>区间选择：</strong>
-                {ranges.map(r => (
-                    <button
-                        key={r.value}
-                        onClick={() => onRangeChange(r.value)}
-                        style={{
-                            marginRight: 6,
-                            padding: '4px 10px',
-                            backgroundColor:
-                                r.value === range ? '#6366f1' : '#eee',
-                            color: r.value === range ? '#fff' : '#333',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer'
-                        }}
-                    >
-                        {r.label}
-                    </button>
-                ))}
+        <div className={styles.container}>
+            {/* 区间 */}
+            <div className={styles.row}>
+                <span className={styles.label}>Range</span>
+                <div className={styles.btnGroup}>
+                    {ranges.map(r => (
+                        <button
+                            key={r.value}
+                            onClick={() => onRangeChange(r.value)}
+                            className={`${styles.btn} ${r.value === range ? styles.btnActive : ''}`}
+                        >
+                            {r.label}
+                        </button>
+                    ))}
+                </div>
             </div>
 
-            {/* 策略选择 */}
-            <div style={{ marginBottom: 8 }}>
-                <strong>策略选择：</strong>
+            {/* 策略 */}
+            <div className={styles.row}>
+                <span className={styles.label}>Strategy</span>
                 <select
                     value={strategy}
                     onChange={e => onStrategyChange(e.target.value)}
-                    style={{ padding: '4px 8px', borderRadius: '4px' }}
+                    className={styles.select}
                 >
                     {strategies.map(s => (
-                        <option key={s.value} value={s.value}>
-                            {s.label}
-                        </option>
+                        <option key={s.value} value={s.value}>{s.label}</option>
                     ))}
                 </select>
             </div>
 
-            {/* 均线选择 */}
-            <div style={{ marginBottom: 8 }}>
-                <strong>均线选择：</strong>
-                {allMAOptions.map(ma => {
-                    const isSelected = selectedMAs.includes(ma.value);
-                    return (
+            {/* 均线 */}
+            <div className={styles.row}>
+                <span className={styles.label}>MA</span>
+                <div className={styles.maGroup}>
+                    {allMAOptions.map(ma => (
                         <button
                             key={ma.value}
                             onClick={() => toggleMA(ma.value)}
-                            style={{
-                                marginRight: 6,
-                                padding: '4px 8px',
-                                backgroundColor: isSelected
-                                    ? '#00b894'
-                                    : '#eee',
-                                color: isSelected ? '#fff' : '#333',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
+                            className={`${styles.maBtn} ${selectedMAs.includes(ma.value) ? styles.maBtnActive : ''}`}
                         >
                             {ma.label}
                         </button>
-                    );
-                })}
+                    ))}
+                </div>
             </div>
 
-            {/* 手动更新 */}
-            <div style={{ marginTop: 8 }}>
-                <strong>最新状态：</strong>
-                <span style={{ marginLeft: 6, marginRight: 10 }}>
-                    {isLatest ? '已是最新 ✅' : '可能过期 ⏳'}
-                    {lastLocal ? `（本地最后日期：${lastLocal}）` : ''}
-                </span>
-                <button
-                    onClick={onUpdate}
-                    disabled={!canUpdate || loading}
-                    style={{
-                        padding: '4px 10px',
-                        borderRadius: 4,
-                        border: 'none',
-                        background: !canUpdate || loading ? '#ddd' : '#10b981',
-                        color: '#fff',
-                        cursor:
-                            !canUpdate || loading ? 'not-allowed' : 'pointer'
-                    }}
-                    title={isLatest ? '已是最新，无需更新' : '点击更新最新数据'}
-                >
-                    {loading ? '更新中…' : '▶️ 更新最新'}
-                </button>
+            {/* 数据状态 */}
+            <div className={styles.row}>
+                <span className={styles.label}>Status</span>
+                <div className={styles.statusContainer}>
+                    <div className={`${styles.statusDot} ${isLatest ? styles.statusDotLive : styles.statusDotStale}`} />
+                    <span className={styles.statusText}>{isLatest ? 'LIVE' : 'STALE'}</span>
+                    {lastLocal && <span className={styles.statusDate}>Last: {lastLocal}</span>}
+                    <button
+                        onClick={onUpdate}
+                        disabled={!syncEnabled}
+                        className={`${styles.syncBtn} ${syncEnabled ? styles.syncBtnEnabled : styles.syncBtnDisabled}`}
+                    >
+                        {loading ? 'SYNCING...' : 'SYNC'}
+                    </button>
+                </div>
             </div>
         </div>
     );

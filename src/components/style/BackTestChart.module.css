@@ -1,0 +1,118 @@
+/* src/components/BackTestChart.module.css */
+
+.container {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.title {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.titleIcon {
+  color: var(--color-purple);
+}
+
+/* Summary 卡片网格 */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+
+.card {
+  background: var(--bg-primary);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
+
+.cardLabel {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardValue {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* 颜色类 */
+.positive { color: var(--color-green); }
+.negative { color: var(--color-red); }
+.warning  { color: var(--color-amber); }
+.neutral  { color: var(--text-primary); }
+
+/* Section 标题 */
+.sectionTitle {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 图表容器 */
+.chartWrap {
+  width: 100%;
+  height: 300px;
+}
+
+/* 交易表格 */
+.tableWrap {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.table th {
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--bg-border-light);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--bg-border);
+  color: var(--text-primary);
+}
+
+.table tr:nth-child(even) {
+  background: rgba(10, 14, 23, 0.5);
+}
+
+.buy { color: var(--color-green); font-weight: 600; }
+.sell { color: var(--color-red); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .summaryGrid { grid-template-columns: repeat(2, 1fr); }
+  .metricsGrid { grid-template-columns: repeat(3, 1fr); }
+}

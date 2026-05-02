@@ -1,0 +1,167 @@
+/* src/components/ChartControls.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+/* 按钮组容器 */
+.btnGroup {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 2px;
+  border: 1px solid var(--bg-border);
+}
+
+.btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  transition: all 0.12s ease;
+}
+
+.btn:hover {
+  background: var(--bg-card-hover);
+}
+
+.btnActive {
+  background: var(--color-blue);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btnActive:hover {
+  background: var(--color-blue);
+}
+
+/* 均线按钮 */
+.maBtn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  transition: all 0.12s ease;
+}
+
+.maBtn:hover {
+  border-color: var(--bg-border-light);
+  color: var(--text-secondary);
+}
+
+.maBtnActive {
+  border-color: var(--color-teal);
+  background: rgba(29, 233, 182, 0.09);
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+/* 策略下拉 */
+.select {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bg-border);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  outline: none;
+}
+
+.select:focus {
+  border-color: var(--color-cyan);
+}
+
+/* 状态区域 */
+.statusContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.statusDotLive {
+  background: var(--color-green);
+  box-shadow: 0 0 6px rgba(0, 230, 118, 0.5);
+}
+
+.statusDotStale {
+  background: var(--color-amber);
+  box-shadow: 0 0 6px rgba(255, 179, 0, 0.5);
+}
+
+.statusText {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.statusDate {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+/* 同步按钮 */
+.syncBtn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.syncBtnEnabled {
+  background: var(--color-green);
+  color: var(--bg-primary);
+  cursor: pointer;
+}
+
+.syncBtnEnabled:hover {
+  filter: brightness(1.1);
+}
+
+.syncBtnDisabled {
+  background: var(--bg-card-hover);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.maGroup {
+  display: flex;
+  gap: 4px;
+}

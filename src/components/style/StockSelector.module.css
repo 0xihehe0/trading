@@ -1,0 +1,15 @@
+/* src/components/StockSelector.module.css */
+
+.container {
+  margin-bottom: var(--spacing-md);
+  max-width: 360px;
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

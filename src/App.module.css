@@ -1,0 +1,129 @@
+/* src/App.module.css */
+
+.app {
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-bottom: 1px solid var(--bg-border);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  background: var(--bg-card);
+}
+
+.headerTitle {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  color: var(--color-cyan);
+  letter-spacing: -0.5px;
+}
+
+.headerSub {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  margin-left: auto;
+}
+
+/* Body */
+.body {
+  padding: var(--spacing-xl);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* 控制面板 */
+.controlBar {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* 操作按钮行 */
+.actionBar {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.actionBtn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bg-border-light);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  transition: all 0.15s ease;
+}
+
+.actionBtn:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+}
+
+.actionBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.actionBtnStrategy {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
+.actionBtnStrategy:hover:not(:disabled) {
+  background: rgba(0, 229, 255, 0.08);
+}
+
+.actionBtnBacktest {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+}
+
+.actionBtnBacktest:hover:not(:disabled) {
+  background: rgba(179, 136, 255, 0.08);
+}
+
+/* 图表区域 */
+.chartSection {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* 底部状态栏 */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.statusItem {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.statusLabel {
+  color: var(--text-muted);
+}
+
+.statusValue {
+  color: var(--color-cyan);
+}
+
+.statusNote {
+  color: var(--text-muted);
+}
