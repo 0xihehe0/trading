@@ -13,7 +13,7 @@ import { getSymbolList } from './api/symbols';
 import { getBackTest } from './api/backtest';
 import { getStockMetrics } from './api/metrics';
 
-import styles from './module.css';
+import styles from './App.module.css';
 
 function App() {
     const [ticker, setTicker] = useState(null);
