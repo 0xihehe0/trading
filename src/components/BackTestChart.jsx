@@ -1,110 +1,150 @@
-// src/components/BackTestChart.jsx
-import React from 'react'
+import React from 'react';
 import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from 'recharts'
+    ResponsiveContainer, LineChart, Line,
+    XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+} from 'recharts';
+import s from './style/BackTestChart.module.css';
+
+const CustomTooltip = ({ active, payload, label }) => {
+    if (!active || !payload?.length) return null;
+    return (
+        <div className={s.tooltip}>
+            <div className={s.tooltipDate}>{label}</div>
+            {payload.map((p, i) => (
+                <div key={i} style={{ color: p.color, padding: '1px 0' }}>
+                    {p.name}: {typeof p.value === 'number' ? p.value.toFixed(2) : p.value}
+                </div>
+            ))}
+        </div>
+    );
+};
 
 function BackTestChart({ data }) {
-  const { summary = {}, metrics = {}, equity_curve = [], trades = [] } = data.backtest || {}
+    const { summary = {}, metrics = {}, equity_curve = [], trades = [] } = data.backtest || {};
 
-  return (
-    <div style={{ padding: 16 }}>
-      <h3>回测结果</h3>
+    if (!equity_curve.length && !trades.length) return null;
 
-      {/* 1. Equity Curve */}
-      <div style={{ width: '100%', height: 300 }}>
-        <ResponsiveContainer>
-          <LineChart
-            data={equity_curve}
-            margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="portfolio_value"
-              name="组合总价值"
-              dot={false}
-              stroke="#8884d8"
-            />
-            <Line
-              type="monotone"
-              dataKey="position_value"
-              name="持仓价值"
-              dot={false}
-              stroke="#82ca9d"
-            />
-            <Line
-              type="monotone"
-              dataKey="cash"
-              name="现金"
-              dot={false}
-              stroke="#ffc658"
-            />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+    const returnCls = metrics.total_return >= 0 ? s.positive : s.negative;
+    const sharpeCls = metrics.sharpe_ratio >= 1 ? s.positive
+        : metrics.sharpe_ratio >= 0.5 ? s.warning : s.negative;
+    const winCls = metrics.win_rate >= 50 ? s.positive : s.warning;
 
-      {/* 2. Summary */}
-      <h4>摘要 (Summary)</h4>
-      <ul>
-        <li>初始资金: {summary.initial_capital}</li>
-        <li>最终资产: {summary.final_capital}</li>
-        <li>净收益: {summary.profit}</li>
-        <li>回测区间: {summary.period}</li>
-      </ul>
+    return (
+        <div className={s.container}>
+            <h3 className={s.title}>
+                <span className={s.titleIcon}>◆</span> Backtest Results
+            </h3>
 
-      {/* 3. Metrics */}
-      <h4>绩效指标 (Metrics)</h4>
-      <ul>
-        <li>总收益率: {metrics.total_return}%</li>
-        <li>年化收益率: {metrics.annual_return}%</li>
-        <li>夏普比率: {metrics.sharpe_ratio}</li>
-        <li>最大回撤: {metrics.max_drawdown}%</li>
-        <li>胜率: {metrics.win_rate}%</li>
-        <li>交易次数: {metrics.trade_count}</li>
-      </ul>
+            {/* Summary Cards */}
+            <div className={s.summaryGrid}>
+                <div className={s.card}>
+                    <div className={s.cardLabel}>Initial</div>
+                    <div className={`${s.cardValue} ${s.neutral}`}>
+                        ${summary.initial_capital?.toLocaleString()}
+                    </div>
+                </div>
+                <div className={s.card}>
+                    <div className={s.cardLabel}>Final</div>
+                    <div className={`${s.cardValue} ${returnCls}`}>
+                        ${summary.final_capital?.toLocaleString()}
+                    </div>
+                </div>
+                <div className={s.card}>
+                    <div className={s.cardLabel}>Return</div>
+                    <div className={`${s.cardValue} ${returnCls}`}>
+                        {metrics.total_return > 0 ? '+' : ''}{metrics.total_return}%
+                    </div>
+                </div>
+                <div className={s.card}>
+                    <div className={s.cardLabel}>Sharpe</div>
+                    <div className={`${s.cardValue} ${sharpeCls}`}>
+                        {metrics.sharpe_ratio}
+                    </div>
+                </div>
+            </div>
 
-      {/* 4. Trades */}
-      <h4>交易明细 (Trades)</h4>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>日期</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>类型</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>价格</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>份额</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>成本/收益</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trades.map((t, i) => (
-            <tr key={i}>
-              <td style={{ border: '1px solid #eee', padding: 8 }}>{t.date}</td>
-              <td style={{ border: '1px solid #eee', padding: 8 }}>
-                {t.type === 'buy' ? '买入' : '卖出'}
-              </td>
-              <td style={{ border: '1px solid #eee', padding: 8 }}>{t.price}</td>
-              <td style={{ border: '1px solid #eee', padding: 8 }}>{t.shares}</td>
-              <td style={{ border: '1px solid #eee', padding: 8 }}>
-                {t.cost != null ? t.cost : t.proceeds}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
+            {/* Equity Curve */}
+            <div className={s.chartWrap}>
+                <ResponsiveContainer>
+                    <LineChart data={equity_curve} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+                        <CartesianGrid stroke="#1e2a3a" strokeDasharray="3 3" vertical={false} />
+                        <XAxis
+                            dataKey="date" stroke="#4a5568"
+                            tick={{ fill: '#4a5568', fontSize: 11 }}
+                            tickLine={false} axisLine={{ stroke: '#1e2a3a' }}
+                        />
+                        <YAxis
+                            stroke="#4a5568"
+                            tick={{ fill: '#4a5568', fontSize: 11 }}
+                            tickLine={false} axisLine={false} width={70}
+                        />
+                        <Tooltip content={<CustomTooltip />} />
+                        <Legend wrapperStyle={{ fontSize: '12px', color: '#7a8ba3' }} />
+                        <Line type="monotone" dataKey="portfolio_value" name="Portfolio"
+                            dot={false} stroke="#b388ff" strokeWidth={1.5} />
+                        <Line type="monotone" dataKey="position_value" name="Position"
+                            dot={false} stroke="#ff9100" strokeWidth={1} strokeOpacity={0.7} />
+                        <Line type="monotone" dataKey="cash" name="Cash"
+                            dot={false} stroke="#ffd740" strokeWidth={1} strokeOpacity={0.7} />
+                    </LineChart>
+                </ResponsiveContainer>
+            </div>
+
+            {/* Metrics Row */}
+            <div className={s.metricsGrid}>
+                {[
+                    { label: 'Ann. Return', val: `${metrics.annual_return}%`, cls: returnCls },
+                    { label: 'Max DD', val: `${metrics.max_drawdown}%`, cls: s.negative },
+                    { label: 'Win Rate', val: `${metrics.win_rate}%`, cls: winCls },
+                    { label: 'Trades', val: metrics.trade_count, cls: s.neutral },
+                    { label: 'Wins', val: metrics.win_count, cls: s.positive },
+                    { label: 'Losses', val: metrics.loss_count, cls: s.negative },
+                ].map(m => (
+                    <div key={m.label} className={s.card}>
+                        <div className={s.cardLabel}>{m.label}</div>
+                        <div className={`${s.cardValue} ${m.cls}`}>{m.val}</div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Trade Log */}
+            {trades.length > 0 && (
+                <>
+                    <div className={s.sectionTitle}>Trade Log</div>
+                    <div className={s.tableWrap}>
+                        <table className={s.table}>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Side</th>
+                                    <th>Price</th>
+                                    <th>Shares</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {trades.map((t, i) => (
+                                    <tr key={i}>
+                                        <td>{t.date}</td>
+                                        <td className={t.type === 'buy' ? s.buy : s.sell}>
+                                            {t.type === 'buy' ? 'BUY' : 'SELL'}
+                                        </td>
+                                        <td>${t.price}</td>
+                                        <td>{t.shares}</td>
+                                        <td>
+                                            ${t.cost != null
+                                                ? t.cost.toLocaleString()
+                                                : t.proceeds?.toLocaleString()}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
+            )}
+        </div>
+    );
 }
 
-export default BackTestChart
+export default BackTestChart;
