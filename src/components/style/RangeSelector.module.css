@@ -1,0 +1,52 @@
+/* src/components/RangeSelector.module.css */
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 2px;
+  border: 1px solid var(--bg-border);
+}
+
+.btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  transition: all 0.12s ease;
+}
+
+.btn:hover {
+  background: var(--bg-card-hover);
+}
+
+.btnActive {
+  background: var(--color-blue);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btnActive:hover {
+  background: var(--color-blue);
+}

@@ -34,6 +34,38 @@
   margin: 0 auto;
 }
 
+/* 分区标题 */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--bg-border);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sectionIcon {
+  color: var(--color-cyan);
+}
+
+.sectionIconPurple {
+  color: var(--color-purple);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--bg-border);
+  margin: var(--spacing-xl) 0;
+}
+
 /* 控制面板 */
 .controlBar {
   background: var(--bg-card);
@@ -156,4 +188,15 @@
 
 .statusNote {
   color: var(--text-muted);
+}
+
+.collapseIcon {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: var(--font-size-md);
+  transition: transform 0.2s ease;
+}
+
+.sectionHeader:hover .collapseIcon {
+  color: var(--text-secondary);
 }

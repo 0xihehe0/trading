@@ -1,0 +1,163 @@
+/* src/components/MarketOverview.module.css */
+
+.container {
+  /* 不需要自己的 padding，由 App body 统一管理 */
+}
+
+/* 顶部指标卡片行 */
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--bg-border-light);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+.cardTitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.cardDate {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.cardValue {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.cardChange {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.cardStatus {
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.cardRange {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--bg-border);
+}
+
+.cardRangeItem {
+  font-size: var(--font-size-sm);
+}
+
+.cardRangeLabel {
+  color: var(--text-muted);
+  margin-right: var(--spacing-xs);
+}
+
+/* 颜色 */
+.positive { color: var(--color-green); }
+.negative { color: var(--color-red); }
+.warning  { color: var(--color-amber); }
+.neutral  { color: var(--text-primary); }
+.cyan     { color: var(--color-cyan); }
+
+/* Fear & Greed 仪表盘 */
+.fngGauge {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg,
+    var(--color-red) 0%,
+    var(--color-amber) 40%,
+    var(--color-green) 70%,
+    var(--color-green) 100%
+  );
+  border-radius: 3px;
+  margin-top: var(--spacing-sm);
+  position: relative;
+}
+
+.fngMarker {
+  position: absolute;
+  top: -4px;
+  width: 4px;
+  height: 14px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transform: translateX(-50%);
+}
+
+/* 图表区域 */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.chartCard {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+}
+
+.chartCardFull {
+  grid-column: 1 / -1;
+}
+
+.chartTitle {
+  font-size: var(--font-size-md);
+  color: var(--text-heading);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.chartWrap {
+  width: 100%;
+  height: 250px;
+}
+
+.loading {
+  text-align: center;
+  padding: var(--spacing-xxl);
+  color: var(--text-muted);
+}
+
+.error {
+  color: var(--color-red);
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-md);
+}
+
+@media (max-width: 900px) {
+  .cardsRow {
+    grid-template-columns: 1fr;
+  }
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}

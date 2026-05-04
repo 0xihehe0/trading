@@ -4,6 +4,7 @@ import ChartControls from './components/ChartControls';
 import SignalChart from './components/SignalChart';
 import BackTestChart from './components/BackTestChart';
 import MetricsPanel from './components/MetricsPanel';
+import MarketOverview from './components/MarketOverview';
 
 import { DEFAULT_RANGE, DEFAULT_STRATEGY } from './config/defaults';
 import { maRecommendations } from './config/constants';
@@ -13,14 +14,16 @@ import { getSymbolList } from './api/symbols';
 import { getBackTest } from './api/backtest';
 import { getStockMetrics } from './api/metrics';
 
-import styles from './App.module.css';
+import s from './App.module.css';
 
 function App() {
     const [ticker, setTicker] = useState(null);
     const [symbolList, setSymbolList] = useState([]);
     const [range, setRange] = useState(DEFAULT_RANGE);
     const [strategy, setStrategy] = useState(DEFAULT_STRATEGY);
-    const [selectedMAs, setSelectedMAs] = useState(maRecommendations[DEFAULT_RANGE] || []);
+    const [selectedMAs, setSelectedMAs] = useState(
+        maRecommendations[DEFAULT_RANGE] || []
+    );
     const [chartData, setChartData] = useState([]);
     const [backTestData, setBackTestData] = useState([]);
     const [signals, setSignals] = useState([]);
@@ -29,6 +32,7 @@ function App() {
     const [meta, setMeta] = useState(null);
     const [metrics, setMetrics] = useState(null);
     const [metricsLoading, setMetricsLoading] = useState(false);
+    const [marketCollapsed, setMarketCollapsed] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -55,7 +59,7 @@ function App() {
                 setMetricsLoading(true);
                 const [stockResp, metricsResp] = await Promise.all([
                     getStockData(ticker, range, selectedMAs),
-                    getStockMetrics(ticker, range),
+                    getStockMetrics(ticker, range)
                 ]);
                 setChartData(stockResp.data);
                 setMeta(stockResp.meta);
@@ -104,13 +108,13 @@ function App() {
 
     const handleRunStrategy = async () => {
         if (selectedMAs.length < 2) {
-            alert('请至少选择两条均线用于策略分析');
+            alert('请至少选择两条均线');
             return;
         }
         try {
             const result = await getStrategySignals(ticker, range, strategy, {
                 short_ma: Math.min(...selectedMAs),
-                long_ma: Math.max(...selectedMAs),
+                long_ma: Math.max(...selectedMAs)
             });
             setSignals(result);
             setStrategyRequested(true);
@@ -122,14 +126,20 @@ function App() {
 
     const handleRunBackTest = async () => {
         if (selectedMAs.length < 2) {
-            alert('请至少选择两条均线用于回测');
+            alert('请至少选择两条均线');
             return;
         }
         try {
             const result = await getBackTest(
-                ticker, range, strategy,
-                { short_ma: Math.min(...selectedMAs), long_ma: Math.max(...selectedMAs) },
-                10000, 0.01
+                ticker,
+                range,
+                strategy,
+                {
+                    short_ma: Math.min(...selectedMAs),
+                    long_ma: Math.max(...selectedMAs)
+                },
+                10000,
+                0.01
             );
             setBackTestData(result);
         } catch (err) {
@@ -139,35 +149,67 @@ function App() {
     };
 
     return (
-        <div className={styles.app}>
-            <div className={styles.header}>
-                <h1 className={styles.headerTitle}>TERMINAL</h1>
-                <span className={styles.headerSub}>S&P 500 Analytics Platform</span>
+        <div className={s.app}>
+            {/* Header */}
+            <div className={s.header}>
+                <h1 className={s.headerTitle}>TERMINAL</h1>
+                <span className={s.headerSub}>S&P 500 Analytics Platform</span>
             </div>
 
-            <div className={styles.body}>
-                <div className={styles.controlBar}>
-                    <StockSelector ticker={ticker} onChange={setTicker} options={symbolList} />
+            <div className={s.body}>
+                {/* ===== 市场总览（常驻顶部）===== */}
+                <div
+                    className={s.sectionHeader}
+                    onClick={() => setMarketCollapsed(!marketCollapsed)}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <span className={s.sectionIcon}>◆</span>
+                    <span className={s.sectionTitle}>Market Overview</span>
+                    <span className={s.collapseIcon}>
+                        {marketCollapsed ? '▸' : '▾'}
+                    </span>
+                </div>
+                {!marketCollapsed && <MarketOverview />}
+
+                <hr className={s.divider} />
+
+                {/* ===== 个股分析 ===== */}
+                <div className={s.sectionHeader}>
+                    <span className={s.sectionIconPurple}>◆</span>
+                    <span className={s.sectionTitle}>Stock Analysis</span>
+                </div>
+
+                <div className={s.controlBar}>
+                    <StockSelector
+                        ticker={ticker}
+                        onChange={setTicker}
+                        options={symbolList}
+                    />
                     <ChartControls
-                        range={range} onRangeChange={handleRangeChange}
-                        selectedMAs={selectedMAs} setSelectedMAs={setSelectedMAs}
-                        strategy={strategy} onStrategyChange={setStrategy}
-                        canUpdate={!!meta?.need_update} isLatest={!!meta?.is_latest}
-                        lastLocal={meta?.last_local} loading={loading}
+                        range={range}
+                        onRangeChange={handleRangeChange}
+                        selectedMAs={selectedMAs}
+                        setSelectedMAs={setSelectedMAs}
+                        strategy={strategy}
+                        onStrategyChange={setStrategy}
+                        canUpdate={!!meta?.need_update}
+                        isLatest={!!meta?.is_latest}
+                        lastLocal={meta?.last_local}
+                        loading={loading}
                         onUpdate={handleRunUpdate}
                     />
                 </div>
 
-                <div className={styles.actionBar}>
+                <div className={s.actionBar}>
                     <button
-                        className={`${styles.actionBtn} ${styles.actionBtnStrategy}`}
+                        className={`${s.actionBtn} ${s.actionBtnStrategy}`}
                         onClick={handleRunStrategy}
                         disabled={!ticker || loading}
                     >
                         ▶ 运行策略分析
                     </button>
                     <button
-                        className={`${styles.actionBtn} ${styles.actionBtnBacktest}`}
+                        className={`${s.actionBtn} ${s.actionBtnBacktest}`}
                         onClick={handleRunBackTest}
                         disabled={!ticker || loading}
                     >
@@ -175,31 +217,46 @@ function App() {
                     </button>
                 </div>
 
-                <div className={styles.chartSection}>
-                    <SignalChart data={chartData} signals={signals} mas={selectedMAs} />
+                <div className={s.chartSection}>
+                    <SignalChart
+                        data={chartData}
+                        signals={signals}
+                        mas={selectedMAs}
+                    />
                 </div>
 
-                <MetricsPanel metrics={metrics} loading={metricsLoading} ticker={ticker} range={range} />
+                <MetricsPanel
+                    metrics={metrics}
+                    loading={metricsLoading}
+                    ticker={ticker}
+                    range={range}
+                />
                 <BackTestChart data={backTestData} />
 
-                <div className={styles.statusBar}>
-                    <span className={styles.statusItem}>
-                        <span className={styles.statusLabel}>TICKER</span>
-                        <span className={styles.statusValue}>{ticker || '--'}</span>
+                <div className={s.statusBar}>
+                    <span className={s.statusItem}>
+                        <span className={s.statusLabel}>TICKER</span>
+                        <span className={s.statusValue}>{ticker || '--'}</span>
                     </span>
-                    <span className={styles.statusItem}>
-                        <span className={styles.statusLabel}>RANGE</span>
-                        <span className={styles.statusValue}>{range.toUpperCase()}</span>
+                    <span className={s.statusItem}>
+                        <span className={s.statusLabel}>RANGE</span>
+                        <span className={s.statusValue}>
+                            {range.toUpperCase()}
+                        </span>
                     </span>
-                    <span className={styles.statusItem}>
-                        <span className={styles.statusLabel}>MA</span>
-                        <span className={styles.statusValue}>{selectedMAs.join(' / ') || '--'}</span>
+                    <span className={s.statusItem}>
+                        <span className={s.statusLabel}>MA</span>
+                        <span className={s.statusValue}>
+                            {selectedMAs.join(' / ') || '--'}
+                        </span>
                     </span>
-                    <span className={styles.statusItem}>
-                        <span className={styles.statusLabel}>STRATEGY</span>
-                        <span className={styles.statusValue}>{strategy}</span>
+                    <span className={s.statusItem}>
+                        <span className={s.statusLabel}>STRATEGY</span>
+                        <span className={s.statusValue}>{strategy}</span>
                     </span>
-                    {meta?.note && <span className={styles.statusNote}>{meta.note}</span>}
+                    {meta?.note && (
+                        <span className={s.statusNote}>{meta.note}</span>
+                    )}
                 </div>
             </div>
         </div>
