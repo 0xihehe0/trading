@@ -169,7 +169,11 @@ function App() {
                         {marketCollapsed ? '▸' : '▾'}
                     </span>
                 </div>
-                {!marketCollapsed && <MarketOverview />}
+                <div
+                    className={`${s.collapsible} ${marketCollapsed ? s.collapsed : ''}`}
+                >
+                    <MarketOverview />
+                </div>
 
                 <hr className={s.divider} />
 
