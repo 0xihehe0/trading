@@ -4,8 +4,8 @@ import {
     LineChart, Line, XAxis, YAxis, CartesianGrid,
     Tooltip, ResponsiveContainer, ReferenceLine,
 } from 'recharts';
-import { getMarketOverview } from '../api/market';
-import RangeSelector from './RangeSelector';
+import { getMarketOverview } from '../../api/market';
+import RangeSelector from '../common/RangeSelector';
 import s from './style/MarketOverview.module.css';
 
 const CustomTooltip = ({ active, payload, label }) => {

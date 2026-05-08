@@ -1,0 +1,124 @@
+/* src/components/stock/style/StockAnalysis.module.css */
+
+.controlBar {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* 操作按钮 */
+.actionBar {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.actionBtn {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bg-border-light);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.actionBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transition: left 0.4s ease;
+}
+
+.actionBtn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.actionBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.actionBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.actionBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.actionBtnStrategy {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  background: rgba(0, 229, 255, 0.06);
+}
+
+.actionBtnStrategy:hover:not(:disabled) {
+  background: rgba(0, 229, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15), inset 0 0 20px rgba(0, 229, 255, 0.05);
+  border-color: rgba(0, 229, 255, 0.6);
+}
+
+.actionBtnBacktest {
+  border-color: var(--color-purple);
+  color: var(--color-purple);
+  background: rgba(179, 136, 255, 0.06);
+}
+
+.actionBtnBacktest:hover:not(:disabled) {
+  background: rgba(179, 136, 255, 0.15);
+  box-shadow: 0 0 20px rgba(179, 136, 255, 0.15), inset 0 0 20px rgba(179, 136, 255, 0.05);
+  border-color: rgba(179, 136, 255, 0.6);
+}
+
+/* 图表 */
+.chartSection {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* 底部状态栏 */
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.statusItem {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.statusLabel {
+  color: var(--text-muted);
+}
+
+.statusValue {
+  color: var(--color-cyan);
+}
+
+.statusNote {
+  color: var(--text-muted);
+}

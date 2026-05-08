@@ -1,0 +1,40 @@
+/* src/components/common/style/SectionHeader.module.css */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--bg-border);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 图标颜色通过 data-color 属性区分 */
+.icon {
+  color: var(--color-cyan);
+}
+
+.icon[data-color="cyan"]   { color: var(--color-cyan); }
+.icon[data-color="purple"] { color: var(--color-purple); }
+.icon[data-color="green"]  { color: var(--color-green); }
+.icon[data-color="amber"]  { color: var(--color-amber); }
+.icon[data-color="blue"]   { color: var(--color-blue); }
+
+.collapseIcon {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: var(--font-size-md);
+  transition: color 0.2s ease;
+}
+
+.header:hover .collapseIcon {
+  color: var(--text-secondary);
+}
