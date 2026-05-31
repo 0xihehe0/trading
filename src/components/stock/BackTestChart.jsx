@@ -3,6 +3,7 @@ import {
     ResponsiveContainer, LineChart, Line,
     XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import { useI18n } from '../../config/i18n';
 import s from './style/BackTestChart.module.css';
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -20,6 +21,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 function BackTestChart({ data }) {
+    const { t } = useI18n();
     const { summary = {}, metrics = {}, equity_curve = [], trades = [] } = data.backtest || {};
 
     if (!equity_curve.length && !trades.length) return null;
@@ -32,25 +34,25 @@ function BackTestChart({ data }) {
     return (
         <div className={s.container}>
             <h3 className={s.title}>
-                <span className={s.titleIcon}>◆</span> Backtest Results
+                <span className={s.titleIcon}>◆</span> {t('backtestResults')}
             </h3>
 
             {/* Summary Cards */}
             <div className={s.summaryGrid}>
                 <div className={s.card}>
-                    <div className={s.cardLabel}>Initial</div>
+                    <div className={s.cardLabel}>{t('initial')}</div>
                     <div className={`${s.cardValue} ${s.neutral}`}>
                         ${summary.initial_capital?.toLocaleString()}
                     </div>
                 </div>
                 <div className={s.card}>
-                    <div className={s.cardLabel}>Final</div>
+                    <div className={s.cardLabel}>{t('final')}</div>
                     <div className={`${s.cardValue} ${returnCls}`}>
                         ${summary.final_capital?.toLocaleString()}
                     </div>
                 </div>
                 <div className={s.card}>
-                    <div className={s.cardLabel}>Return</div>
+                    <div className={s.cardLabel}>{t('return')}</div>
                     <div className={`${s.cardValue} ${returnCls}`}>
                         {metrics.total_return > 0 ? '+' : ''}{metrics.total_return}%
                     </div>
@@ -80,11 +82,11 @@ function BackTestChart({ data }) {
                         />
                         <Tooltip content={<CustomTooltip />} />
                         <Legend wrapperStyle={{ fontSize: '12px', color: '#7a8ba3' }} />
-                        <Line type="monotone" dataKey="portfolio_value" name="Portfolio"
+                        <Line type="monotone" dataKey="portfolio_value" name={t('portfolio')}
                             dot={false} stroke="#b388ff" strokeWidth={1.5} />
-                        <Line type="monotone" dataKey="position_value" name="Position"
+                        <Line type="monotone" dataKey="position_value" name={t('position')}
                             dot={false} stroke="#ff9100" strokeWidth={1} strokeOpacity={0.7} />
-                        <Line type="monotone" dataKey="cash" name="Cash"
+                        <Line type="monotone" dataKey="cash" name={t('cash')}
                             dot={false} stroke="#ffd740" strokeWidth={1} strokeOpacity={0.7} />
                     </LineChart>
                 </ResponsiveContainer>
@@ -93,12 +95,12 @@ function BackTestChart({ data }) {
             {/* Metrics Row */}
             <div className={s.metricsGrid}>
                 {[
-                    { label: 'Ann. Return', val: `${metrics.annual_return}%`, cls: returnCls },
-                    { label: 'Max DD', val: `${metrics.max_drawdown}%`, cls: s.negative },
-                    { label: 'Win Rate', val: `${metrics.win_rate}%`, cls: winCls },
-                    { label: 'Trades', val: metrics.trade_count, cls: s.neutral },
-                    { label: 'Wins', val: metrics.win_count, cls: s.positive },
-                    { label: 'Losses', val: metrics.loss_count, cls: s.negative },
+                    { label: t('annReturn'), val: `${metrics.annual_return}%`, cls: returnCls },
+                    { label: t('maxDd'), val: `${metrics.max_drawdown}%`, cls: s.negative },
+                    { label: t('winRate'), val: `${metrics.win_rate}%`, cls: winCls },
+                    { label: t('trades'), val: metrics.trade_count, cls: s.neutral },
+                    { label: t('wins'), val: metrics.win_count, cls: s.positive },
+                    { label: t('losses'), val: metrics.loss_count, cls: s.negative },
                 ].map(m => (
                     <div key={m.label} className={s.card}>
                         <div className={s.cardLabel}>{m.label}</div>
@@ -110,31 +112,31 @@ function BackTestChart({ data }) {
             {/* Trade Log */}
             {trades.length > 0 && (
                 <>
-                    <div className={s.sectionTitle}>Trade Log</div>
+                    <div className={s.sectionTitle}>{t('tradeLog')}</div>
                     <div className={s.tableWrap}>
                         <table className={s.table}>
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Side</th>
-                                    <th>Price</th>
-                                    <th>Shares</th>
-                                    <th>Amount</th>
+                                    <th>{t('date')}</th>
+                                    <th>{t('side')}</th>
+                                    <th>{t('price')}</th>
+                                    <th>{t('shares')}</th>
+                                    <th>{t('amount')}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {trades.map((t, i) => (
+                                {trades.map((trade, i) => (
                                     <tr key={i}>
-                                        <td>{t.date}</td>
-                                        <td className={t.type === 'buy' ? s.buy : s.sell}>
-                                            {t.type === 'buy' ? 'BUY' : 'SELL'}
+                                        <td>{trade.date}</td>
+                                        <td className={trade.type === 'buy' ? s.buy : s.sell}>
+                                            {trade.type === 'buy' ? t('buy') : t('sell')}
                                         </td>
-                                        <td>${t.price}</td>
-                                        <td>{t.shares}</td>
+                                        <td>${trade.price}</td>
+                                        <td>{trade.shares}</td>
                                         <td>
-                                            ${t.cost != null
-                                                ? t.cost.toLocaleString()
-                                                : t.proceeds?.toLocaleString()}
+                                            ${trade.cost != null
+                                                ? trade.cost.toLocaleString()
+                                                : trade.proceeds?.toLocaleString()}
                                         </td>
                                     </tr>
                                 ))}

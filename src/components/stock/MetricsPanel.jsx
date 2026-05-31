@@ -7,27 +7,28 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import React from 'react';
+import { useI18n } from '../../config/i18n';
 import s from './style/MetricsPanel.module.css';
 
 const metricGroups = [
-    { title: 'RETURNS', icon: '↗', items: [
-        { key: 'total_return', label: 'Total Return', unit: '%' },
-        { key: 'annual_return', label: 'Ann. Return', unit: '%' },
-        { key: 'recent_1y_return', label: '1Y Return', unit: '%' },
+    { titleKey: 'returns', icon: '↗', items: [
+        { key: 'total_return', labelKey: 'totalReturn', unit: '%' },
+        { key: 'annual_return', labelKey: 'annualReturn', unit: '%' },
+        { key: 'recent_1y_return', labelKey: 'oneYearReturn', unit: '%' },
     ]},
-    { title: 'RISK', icon: '⚡', items: [
-        { key: 'annual_volatility', label: 'Volatility', unit: '%' },
-        { key: 'max_drawdown', label: 'Max DD', unit: '%' },
-        { key: 'max_drawdown_duration_days', label: 'DD Duration', unit: 'd' },
+    { titleKey: 'risk', icon: '⚡', items: [
+        { key: 'annual_volatility', labelKey: 'volatility', unit: '%' },
+        { key: 'max_drawdown', labelKey: 'maxDd', unit: '%' },
+        { key: 'max_drawdown_duration_days', labelKey: 'ddDuration', unit: 'd' },
     ]},
-    { title: 'RISK-ADJ', icon: '◆', items: [
-        { key: 'sharpe_ratio', label: 'Sharpe', unit: '' },
-        { key: 'sortino_ratio', label: 'Sortino', unit: '' },
-        { key: 'calmar_ratio', label: 'Calmar', unit: '' },
+    { titleKey: 'riskAdj', icon: '◆', items: [
+        { key: 'sharpe_ratio', labelKey: 'sharpe', unit: '' },
+        { key: 'sortino_ratio', labelKey: 'sortino', unit: '' },
+        { key: 'calmar_ratio', labelKey: 'calmar', unit: '' },
     ]},
-    { title: 'OTHER', icon: '●', items: [
-        { key: 'beta', label: 'Beta', unit: '' },
-        { key: 'trading_days', label: 'Days', unit: '' },
+    { titleKey: 'other', icon: '●', items: [
+        { key: 'beta', labelKey: 'beta', unit: '' },
+        { key: 'trading_days', labelKey: 'days', unit: '' },
     ]},
 ];
 
@@ -52,7 +53,9 @@ function fmt(key, value, unit) {
 }
 
 function MetricsPanel({ metrics, loading, ticker }) {
-    if (loading) return <div className={s.container}><div className={s.loading}>Loading metrics...</div></div>;
+    const { t } = useI18n();
+
+    if (loading) return <div className={s.container}><div className={s.loading}>{t('metricsLoading')}</div></div>;
     if (!metrics) return null;
     if (metrics.error) return <div className={s.container}><div className={s.error}>{metrics.error}</div></div>;
 
@@ -60,21 +63,21 @@ function MetricsPanel({ metrics, loading, ticker }) {
         <div className={s.container}>
             <div className={s.header}>
                 <h3 className={s.title}>
-                    <span className={s.titleTicker}>{ticker}</span> Risk / Return
+                    <span className={s.titleTicker}>{ticker}</span> {t('riskReturn')}
                 </h3>
                 <span className={s.dateRange}>{metrics.start_date} → {metrics.end_date}</span>
             </div>
             <div className={s.grid}>
                 {metricGroups.map(group => (
-                    <div key={group.title} className={s.group}>
-                        <div className={s.groupTitle}><span>{group.icon}</span>{group.title}</div>
+                    <div key={group.titleKey} className={s.group}>
+                        <div className={s.groupTitle}><span>{group.icon}</span>{t(group.titleKey)}</div>
                         {group.items.map(item => {
                             const value = metrics[item.key];
                             if (item.key === 'beta' && ticker === '^GSPC') return null;
                             if (value === undefined) return null;
                             return (
                                 <div key={item.key} className={s.row}>
-                                    <span className={s.label}>{item.label}</span>
+                                    <span className={s.label}>{t(item.labelKey)}</span>
                                     <span className={`${s.value} ${getColorClass(item.key, value)}`}>
                                         {fmt(item.key, value, item.unit)}
                                     </span>

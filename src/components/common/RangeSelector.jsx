@@ -8,12 +8,15 @@
  */
 // src/components/RangeSelector.jsx
 import { ranges } from '../../config/constants';
+import { useI18n } from '../../config/i18n';
 import styles from './style/RangeSelector.module.css';
 
-function RangeSelector({ range, onChange, label = 'Range' }) {
+function RangeSelector({ range, onChange, label }) {
+    const { t } = useI18n();
+
     return (
         <div className={styles.row}>
-            <span className={styles.label}>{label}</span>
+            <span className={styles.label}>{label || t('range')}</span>
             <div className={styles.btnGroup}>
                 {ranges.map(r => (
                     <button

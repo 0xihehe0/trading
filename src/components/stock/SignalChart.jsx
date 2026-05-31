@@ -4,6 +4,7 @@ import {
     ResponsiveContainer, Legend, Scatter, Brush,
 } from 'recharts';
 import { format, parseISO } from 'date-fns';
+import { useI18n } from '../../config/i18n';
 import s from './style/SignalChart.module.css';
 
 const MA_COLORS = ['#1de9b6', '#ff6e40', '#ffd740', '#7c4dff', '#448aff', '#ff3d57'];
@@ -45,6 +46,7 @@ const CustomLegend = ({ payload, hiddenKeys, onToggle }) => (
 );
 
 function SignalChart({ data, signals, mas = [] }) {
+    const { t } = useI18n();
     const [hiddenKeys, setHiddenKeys] = useState([]);
 
     const handleToggle = dataKey => {
@@ -83,7 +85,7 @@ function SignalChart({ data, signals, mas = [] }) {
                 <Legend content={<CustomLegend hiddenKeys={hiddenKeys} onToggle={handleToggle} />} />
 
                 {!hiddenKeys.includes('close') && (
-                    <Line type="monotone" dataKey="close" stroke="#00e5ff" name="Close" dot={false} strokeWidth={1.5} />
+                    <Line type="monotone" dataKey="close" stroke="#00e5ff" name={t('close')} dot={false} strokeWidth={1.5} />
                 )}
 
                 {mas.map((ma, i) => {
@@ -98,10 +100,10 @@ function SignalChart({ data, signals, mas = [] }) {
                 })}
 
                 {!hiddenKeys.includes('buy') && (
-                    <Scatter data={signals.filter(sig => sig.type === 'buy')} fill="#00e676" name="Buy" shape="triangle" />
+                    <Scatter data={signals.filter(sig => sig.type === 'buy')} fill="#00e676" name={t('buy')} shape="triangle" />
                 )}
                 {!hiddenKeys.includes('sell') && (
-                    <Scatter data={signals.filter(sig => sig.type === 'sell')} fill="#ff3d57" name="Sell" shape="diamond" />
+                    <Scatter data={signals.filter(sig => sig.type === 'sell')} fill="#ff3d57" name={t('sell')} shape="diamond" />
                 )}
 
                 <Brush dataKey="date" height={20} stroke="#2a3a4e" fill="#0a0e17" tickFormatter={() => ''} />

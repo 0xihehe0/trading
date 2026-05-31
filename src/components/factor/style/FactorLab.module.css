@@ -1,0 +1,136 @@
+.container {
+  margin-bottom: var(--spacing-lg);
+}
+
+.controlPanel {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.selectorGrid {
+  display: grid;
+  grid-template-columns: minmax(240px, 360px) 1fr 120px;
+  gap: var(--spacing-lg);
+  align-items: end;
+  margin-bottom: var(--spacing-lg);
+}
+
+.rangeBox {
+  padding-bottom: var(--spacing-md);
+  min-width: 0;
+}
+
+.durationField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding-bottom: var(--spacing-md);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input {
+  height: 36px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bg-border);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--color-cyan);
+}
+
+.actionBar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.runBtn {
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-green);
+  background: rgba(0, 230, 118, 0.07);
+  color: var(--color-green);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.runBtn:hover:not(:disabled) {
+  background: rgba(0, 230, 118, 0.15);
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.14), inset 0 0 20px rgba(0, 230, 118, 0.05);
+  transform: translateY(-1px);
+}
+
+.runBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.statusLine {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.statusLabel {
+  color: var(--text-muted);
+}
+
+.statusValue {
+  color: var(--color-green);
+  font-weight: 600;
+}
+
+.error {
+  border: 1px solid rgba(255, 61, 87, 0.4);
+  background: rgba(255, 61, 87, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-red);
+  font-size: var(--font-size-sm);
+}
+
+@media (max-width: 1100px) {
+  .selectorGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .rangeBox,
+  .durationField {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .actionBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .statusLine {
+    flex-wrap: wrap;
+  }
+}

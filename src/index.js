@@ -9,11 +9,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { LanguageProvider } from './config/i18n';
 import './config/theme.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <LanguageProvider>
+        <App />
+    </LanguageProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

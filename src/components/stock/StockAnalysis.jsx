@@ -13,10 +13,12 @@ import { getStrategySignals } from '../../api/strategy';
 import { getSymbolList } from '../../api/symbols';
 import { getBackTest } from '../../api/backtest';
 import { getStockMetrics } from '../../api/metrics';
+import { useI18n } from '../../config/i18n';
 
 import s from './style/StockAnalysis.module.css';
 
 function StockAnalysis() {
+    const { t, translateValue } = useI18n();
     const [ticker, setTicker] = useState(null);
     const [symbolList, setSymbolList] = useState([]);
     const [range, setRange] = useState(DEFAULT_RANGE);
@@ -26,7 +28,6 @@ function StockAnalysis() {
     const [backTestData, setBackTestData] = useState([]);
     const [signals, setSignals] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [strategyRequested, setStrategyRequested] = useState(false);
     const [meta, setMeta] = useState(null);
     const [metrics, setMetrics] = useState(null);
     const [metricsLoading, setMetricsLoading] = useState(false);
@@ -64,7 +65,6 @@ function StockAnalysis() {
                 setMeta(stockResp.meta);
                 setMetrics(metricsResp.metrics);
                 setSignals([]);
-                setStrategyRequested(false);
             } catch (err) {
                 console.error('获取数据失败:', err);
                 setChartData([]);
@@ -96,27 +96,25 @@ function StockAnalysis() {
                 setMetrics(metricsResp.metrics);
             } catch (e) { console.error('更新指标失败:', e); }
             setSignals([]);
-            setStrategyRequested(false);
         } catch (err) { console.error('手动更新失败:', err); }
         finally { setLoading(false); }
     };
 
     // 策略分析
     const handleRunStrategy = async () => {
-        if (selectedMAs.length < 2) { alert('请至少选择两条均线'); return; }
+        if (selectedMAs.length < 2) { alert(t('selectTwoMa')); return; }
         try {
             const result = await getStrategySignals(ticker, range, strategy, {
                 short_ma: Math.min(...selectedMAs),
                 long_ma: Math.max(...selectedMAs),
             });
             setSignals(result);
-            setStrategyRequested(true);
         } catch (err) { console.error('策略请求失败:', err); setSignals([]); }
     };
 
     // 回测
     const handleRunBackTest = async () => {
-        if (selectedMAs.length < 2) { alert('请至少选择两条均线'); return; }
+        if (selectedMAs.length < 2) { alert(t('selectTwoMa')); return; }
         try {
             const result = await getBackTest(
                 ticker, range, strategy,
@@ -145,11 +143,11 @@ function StockAnalysis() {
                 <button
                     className={`${s.actionBtn} ${s.actionBtnStrategy}`}
                     onClick={handleRunStrategy} disabled={!ticker || loading}
-                >▶ 运行策略分析</button>
+                >{t('runStrategy')}</button>
                 <button
                     className={`${s.actionBtn} ${s.actionBtnBacktest}`}
                     onClick={handleRunBackTest} disabled={!ticker || loading}
-                >▶ 测试回测</button>
+                >{t('runBacktest')}</button>
             </div>
 
             <div className={s.chartSection}>
@@ -161,22 +159,22 @@ function StockAnalysis() {
 
             <div className={s.statusBar}>
                 <span className={s.statusItem}>
-                    <span className={s.statusLabel}>TICKER</span>
+                    <span className={s.statusLabel}>{t('ticker')}</span>
                     <span className={s.statusValue}>{ticker || '--'}</span>
                 </span>
                 <span className={s.statusItem}>
-                    <span className={s.statusLabel}>RANGE</span>
+                    <span className={s.statusLabel}>{t('range')}</span>
                     <span className={s.statusValue}>{range.toUpperCase()}</span>
                 </span>
                 <span className={s.statusItem}>
-                    <span className={s.statusLabel}>MA</span>
+                    <span className={s.statusLabel}>{t('ma')}</span>
                     <span className={s.statusValue}>{selectedMAs.join(' / ') || '--'}</span>
                 </span>
                 <span className={s.statusItem}>
-                    <span className={s.statusLabel}>STRATEGY</span>
+                    <span className={s.statusLabel}>{t('strategy')}</span>
                     <span className={s.statusValue}>{strategy}</span>
                 </span>
-                {meta?.note && <span className={s.statusNote}>{meta.note}</span>}
+                {meta?.note && <span className={s.statusNote}>{translateValue(meta.note)}</span>}
             </div>
         </div>
     );

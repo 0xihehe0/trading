@@ -7,6 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { ranges, strategies, allMAOptions } from '../../config/constants';
+import { useI18n } from '../../config/i18n';
 import styles from './style/ChartControls.module.css';
 
 function ChartControls({
@@ -16,6 +17,8 @@ function ChartControls({
     canUpdate = false, isLatest = false,
     lastLocal, loading = false, onUpdate,
 }) {
+    const { t, strategyLabel } = useI18n();
+
     const toggleMA = maValue => {
         const updated = selectedMAs.includes(maValue)
             ? selectedMAs.filter(v => v !== maValue)
@@ -29,7 +32,7 @@ function ChartControls({
         <div className={styles.container}>
             {/* 区间 */}
             <div className={styles.row}>
-                <span className={styles.label}>Range</span>
+                <span className={styles.label}>{t('range')}</span>
                 <div className={styles.btnGroup}>
                     {ranges.map(r => (
                         <button
@@ -45,21 +48,21 @@ function ChartControls({
 
             {/* 策略 */}
             <div className={styles.row}>
-                <span className={styles.label}>Strategy</span>
+                <span className={styles.label}>{t('strategy')}</span>
                 <select
                     value={strategy}
                     onChange={e => onStrategyChange(e.target.value)}
                     className={styles.select}
                 >
                     {strategies.map(s => (
-                        <option key={s.value} value={s.value}>{s.label}</option>
+                        <option key={s.value} value={s.value}>{strategyLabel(s.value)}</option>
                     ))}
                 </select>
             </div>
 
             {/* 均线 */}
             <div className={styles.row}>
-                <span className={styles.label}>MA</span>
+                <span className={styles.label}>{t('ma')}</span>
                 <div className={styles.maGroup}>
                     {allMAOptions.map(ma => (
                         <button
@@ -75,17 +78,17 @@ function ChartControls({
 
             {/* 数据状态 */}
             <div className={styles.row}>
-                <span className={styles.label}>Status</span>
+                <span className={styles.label}>{t('status')}</span>
                 <div className={styles.statusContainer}>
                     <div className={`${styles.statusDot} ${isLatest ? styles.statusDotLive : styles.statusDotStale}`} />
-                    <span className={styles.statusText}>{isLatest ? 'LIVE' : 'STALE'}</span>
-                    {lastLocal && <span className={styles.statusDate}>Last: {lastLocal}</span>}
+                    <span className={styles.statusText}>{isLatest ? t('live') : t('stale')}</span>
+                    {lastLocal && <span className={styles.statusDate}>{t('last')}: {lastLocal}</span>}
                     <button
                         onClick={onUpdate}
                         disabled={!syncEnabled}
                         className={`${styles.syncBtn} ${syncEnabled ? styles.syncBtnEnabled : styles.syncBtnDisabled}`}
                     >
-                        {loading ? 'SYNCING...' : 'SYNC'}
+                        {loading ? t('syncing') : t('sync')}
                     </button>
                 </div>
             </div>

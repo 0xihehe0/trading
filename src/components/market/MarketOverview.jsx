@@ -6,6 +6,7 @@ import {
 } from 'recharts';
 import { getMarketOverview } from '../../api/market';
 import RangeSelector from '../common/RangeSelector';
+import { useI18n } from '../../config/i18n';
 import s from './style/MarketOverview.module.css';
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -30,6 +31,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 function MarketOverview() {
+    const { t, translateValue } = useI18n();
     const [range, setRange] = useState('6mo');
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -49,7 +51,7 @@ function MarketOverview() {
         })();
     }, [range]);
 
-    if (loading) return <div className={s.loading}>Loading market data...</div>;
+    if (loading) return <div className={s.loading}>{t('loadingMarket')}</div>;
     if (!data) return null;
 
     const sp = data.sp500?.stats || {};
@@ -67,7 +69,7 @@ function MarketOverview() {
 
     return (
         <div className={s.container}>
-            <RangeSelector range={range} onChange={setRange} label="Range" />
+            <RangeSelector range={range} onChange={setRange} />
 
             {/* 三张卡片 */}
             <div className={s.cardsRow} style={{ marginTop: 'var(--spacing-lg)' }}>
@@ -86,11 +88,11 @@ function MarketOverview() {
                     </div>
                     <div className={s.cardRange}>
                         <span className={s.cardRangeItem}>
-                            <span className={s.cardRangeLabel}>H</span>
+                            <span className={s.cardRangeLabel}>{t('high')}</span>
                             <span className={s.positive}>{sp.high?.toLocaleString()}</span>
                         </span>
                         <span className={s.cardRangeItem}>
-                            <span className={s.cardRangeLabel}>L</span>
+                            <span className={s.cardRangeLabel}>{t('low')}</span>
                             <span className={s.negative}>{sp.low?.toLocaleString()}</span>
                         </span>
                     </div>
@@ -106,15 +108,15 @@ function MarketOverview() {
                         {vix.current}
                     </div>
                     <div className={`${s.cardStatus} ${vixColor}`}>
-                        {vix.status}
+                        {translateValue(vix.status)}
                     </div>
                     <div className={s.cardRange}>
                         <span className={s.cardRangeItem}>
-                            <span className={s.cardRangeLabel}>H</span>
+                            <span className={s.cardRangeLabel}>{t('high')}</span>
                             <span className={s.negative}>{vix.high}</span>
                         </span>
                         <span className={s.cardRangeItem}>
-                            <span className={s.cardRangeLabel}>L</span>
+                            <span className={s.cardRangeLabel}>{t('low')}</span>
                             <span className={s.positive}>{vix.low}</span>
                         </span>
                     </div>
@@ -123,14 +125,14 @@ function MarketOverview() {
                 {/* Fear & Greed */}
                 <div className={s.card}>
                     <div className={s.cardHeader}>
-                        <span className={s.cardTitle}>Fear & Greed</span>
+                        <span className={s.cardTitle}>{t('factorFearGreed')}</span>
                         <span className={s.cardDate}>{fng.last_date}</span>
                     </div>
                     <div className={`${s.cardValue} ${fngColor}`}>
                         {fng.current}
                     </div>
                     <div className={`${s.cardStatus} ${fngColor}`}>
-                        {fng.label}
+                        {translateValue(fng.label)}
                     </div>
                     {/* 仪表条 */}
                     <div className={s.fngGauge}>
@@ -138,11 +140,11 @@ function MarketOverview() {
                     </div>
                     <div className={s.cardRange}>
                         <span className={s.cardRangeItem}>
-                            <span className={s.cardRangeLabel}>H</span>
+                            <span className={s.cardRangeLabel}>{t('high')}</span>
                             <span>{fng.high}</span>
                         </span>
                         <span className={s.cardRangeItem}>
-                            <span className={s.cardRangeLabel}>L</span>
+                            <span className={s.cardRangeLabel}>{t('low')}</span>
                             <span>{fng.low}</span>
                         </span>
                     </div>
@@ -153,7 +155,7 @@ function MarketOverview() {
             <div className={s.chartsGrid}>
                 {/* S&P 500 走势 */}
                 <div className={`${s.chartCard} ${s.chartCardFull}`}>
-                    <div className={s.chartTitle}>S&P 500 — Price</div>
+                    <div className={s.chartTitle}>S&P 500 - {t('price')}</div>
                     <div className={s.chartWrap}>
                         <ResponsiveContainer>
                             <LineChart data={data.sp500?.chart || []}>
@@ -169,7 +171,7 @@ function MarketOverview() {
 
                 {/* VIX 走势 */}
                 <div className={s.chartCard}>
-                    <div className={s.chartTitle}>VIX — Volatility</div>
+                    <div className={s.chartTitle}>VIX - {t('volatility')}</div>
                     <div className={s.chartWrap}>
                         <ResponsiveContainer>
                             <LineChart data={data.vix?.chart || []}>
@@ -187,7 +189,7 @@ function MarketOverview() {
 
                 {/* Fear & Greed 走势 */}
                 <div className={s.chartCard}>
-                    <div className={s.chartTitle}>CNN Fear & Greed Index</div>
+                    <div className={s.chartTitle}>CNN {t('factorFearGreed')} {t('index')}</div>
                     <div className={s.chartWrap}>
                         <ResponsiveContainer>
                             <LineChart data={data.fear_greed?.chart || []}>
@@ -198,7 +200,7 @@ function MarketOverview() {
                                 <ReferenceLine y={25} stroke="#ff3d57" strokeDasharray="3 3" />
                                 <ReferenceLine y={50} stroke="#4a5568" strokeDasharray="3 3" />
                                 <ReferenceLine y={75} stroke="#00e676" strokeDasharray="3 3" />
-                                <Line type="monotone" dataKey="value" stroke="#b388ff" name="F&G" dot={false} strokeWidth={1.5} />
+                                <Line type="monotone" dataKey="value" stroke="#b388ff" name={t('factorFearGreed')} dot={false} strokeWidth={1.5} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
